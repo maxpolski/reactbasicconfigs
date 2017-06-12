@@ -1,4 +1,4 @@
-# reactbasicconfigs
+# React Basic Configs
 
 To launch
 
