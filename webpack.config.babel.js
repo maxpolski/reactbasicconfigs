@@ -6,7 +6,7 @@ const distDir = path.join(__dirname, 'dist');
 export default {
   devServer: {
     host: 'localhost',
-    port: 3000,
+    port: 8080,
   },
   entry: './src/index',
   output: {
