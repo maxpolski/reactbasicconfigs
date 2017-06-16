@@ -4,9 +4,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const distDir = path.join(__dirname, 'dist');
 
 export default {
+  devtool: 'cheap-eval-source-map',
   devServer: {
     host: 'localhost',
     port: 8080,
+    historyApiFallback: true,
   },
   entry: './src/index',
   output: {
@@ -28,5 +30,5 @@ export default {
     new HtmlWebpackPlugin({
       template: 'static/index.html',
     }),
-  ]
-}
+  ],
+};
