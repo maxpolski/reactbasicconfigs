@@ -12,6 +12,7 @@ class TodoListWrapper extends Component {
   render() {
     return (
       <div>
+        <button onClick={this.props.getInitialData}>Load</button>
         <TodoList
           todos={this.props.todos}
           toggleCompletion={this.props.toggleCompletion}
@@ -51,6 +52,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  getInitialData: todoActions.getInitialData(dispatch),
   addTodo: caption => dispatch(todoActions.addTodo(caption)),
   toggleCompletion: todoId => dispatch(todoActions.toggleCompletion(todoId)),
   deleteTodo: todoId => dispatch(todoActions.deleteTodo(todoId)),

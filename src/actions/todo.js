@@ -1,5 +1,17 @@
 import * as constants from '../constants/todo';
 
+import * as todoApiCalls from '../apiCalls/todo';
+
+const gotInitialData = todos => ({
+  type: constants.GOT_INITIAL_DATA,
+  payload: todos,
+});
+
+export const getInitialData = dispatch => () => {
+  todoApiCalls.getTodos()
+    .then(todos => dispatch(gotInitialData(todos)));
+};
+
 export const addTodo = caption => ({
   type: constants.ADD_TODO,
   payload: caption,

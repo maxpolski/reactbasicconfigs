@@ -1,18 +1,12 @@
 import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const distDir = path.join(__dirname, 'dist');
+const distDir = path.join(__dirname, 'static');
 
 export default {
   devtool: 'cheap-eval-source-map',
-  devServer: {
-    host: 'localhost',
-    port: 8080,
-    historyApiFallback: true,
-  },
   entry: './src/index',
   output: {
-    path: distDir,
+    path: `${distDir}/dist`,
     filename: 'bundle.js',
     publicPath: '/',
   },
@@ -26,9 +20,4 @@ export default {
       exclude: /node_modules/,
     }],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'static/index.html',
-    }),
-  ],
 };
