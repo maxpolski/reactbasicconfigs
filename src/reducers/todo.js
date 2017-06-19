@@ -45,3 +45,11 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export const getTodos = state => state.todos;
+
+export const getCompletedTodos = state =>
+  state.todos.filter(todo => todo.isCompleted);
+
+export const getInCompletedTodo = state =>
+  state.todos.filter(todo => !todo.isCompleted);
