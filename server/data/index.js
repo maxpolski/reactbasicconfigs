@@ -1,21 +1,22 @@
-const data = [];
+const data = [{ caption: 'test', id: 123, isCompleted: false }];
 
 class Todo {
   constructor(caption) {
     this.id = Date.now();
     this.caption = caption;
-    this.completion = false;
+    this.isCompleted = false;
   }
 
-  toggleCompletion = () => this.completion = !this.completion;
+  toggleCompletion = () => this.isCompleted = !this.isCompleted;
 
   editCaption = caption => this.caption = caption;
 }
 
 export const getData = () => data;
 export const addTodo = (caption) => {
-  data.push(new Todo(caption));
-  return data;
+  const newTodo = new Todo(caption);
+  data.push(newTodo);
+  return newTodo;
 };
 export const removeTodo = (id) => {
   const removalIndex = data.findIndex(todo => todo.id === id);
@@ -24,13 +25,9 @@ export const removeTodo = (id) => {
   return data;
 };
 export const toggleCompletion = (id) => {
-  data.forEach((todo) => {
-    if (todo.id === id) {
-      todo.toggleCompletion();
-    }
-  });
-
-  return data;
+  const todoToChange = data.find(todo => todo.id === +id);
+  todoToChange.toggleCompletion();
+  return todoToChange;
 };
 export const editCaption = (id, newCaption) => {
   data.forEach((todo) => {

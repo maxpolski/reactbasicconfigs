@@ -11,19 +11,17 @@ const initialState = [];
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case todoConstants.GOT_INITIAL_DATA:
+      return action.payload;
     case todoConstants.ADD_TODO:
       return [
         ...state,
-        {
-          id: Date.now(),
-          caption: action.payload,
-          isCompleted: false,
-        },
+        action.payload,
       ];
     case todoConstants.TOGGLE_COMPLETION:
       return state.map((todo) => {
-        if (todo.id === action.payload.todoId) {
-          return { ...todo, isCompleted: !todo.isCompleted };
+        if (todo.id === action.payload.id) {
+          return { ...action.payload };
         }
 
         return { ...todo };

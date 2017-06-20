@@ -9,10 +9,13 @@ import TodoInput from './TodoInput';
 import * as todoGetters from '../reducers/todo';
 
 class TodoListWrapper extends Component {
+  componentDidMount() {
+    this.props.getInitialData();
+  }
+
   render() {
     return (
       <div>
-        <button onClick={this.props.getInitialData}>Load</button>
         <TodoList
           todos={this.props.todos}
           toggleCompletion={this.props.toggleCompletion}
@@ -53,8 +56,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   getInitialData: todoActions.getInitialData(dispatch),
-  addTodo: caption => dispatch(todoActions.addTodo(caption)),
-  toggleCompletion: todoId => dispatch(todoActions.toggleCompletion(todoId)),
+  addTodo: todoActions.addTodo(dispatch),
+  toggleCompletion: todoActions.toggleCompletion(dispatch),
   deleteTodo: todoId => dispatch(todoActions.deleteTodo(todoId)),
   editTodo: (todoId, newCaption) =>
     dispatch(todoActions.editTodo(todoId, newCaption)),
@@ -68,6 +71,7 @@ TodoListWrapper.propTypes = {
     caption: PropTypes.string.isRequired,
     isCompleted: PropTypes.bool.isRequired,
   })).isRequired,
+  getInitialData: PropTypes.func.isRequired,
   addTodo: PropTypes.func.isRequired,
   toggleCompletion: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,

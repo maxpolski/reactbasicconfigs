@@ -12,15 +12,23 @@ export const getInitialData = dispatch => () => {
     .then(todos => dispatch(gotInitialData(todos)));
 };
 
-export const addTodo = caption => ({
+const addTodoActionCreator = todo => ({
   type: constants.ADD_TODO,
-  payload: caption,
+  payload: todo,
 });
 
-export const toggleCompletion = todoId => ({
+export const addTodo = dispatch => caption =>
+  todoApiCalls.addTodo(caption)
+    .then(todo => dispatch(addTodoActionCreator(todo)));
+
+const toggleCompletionActionCreator = todo => ({
   type: constants.TOGGLE_COMPLETION,
-  payload: { todoId },
+  payload: todo,
 });
+
+export const toggleCompletion = dispatch => todoId =>
+  todoApiCalls.toggleTodo(todoId)
+    .then(todo => dispatch(toggleCompletionActionCreator(todo)));
 
 export const deleteTodo = todoId => ({
   type: constants.DELETE_TODO,
