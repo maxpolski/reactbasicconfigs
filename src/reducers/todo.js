@@ -21,10 +21,10 @@ export default (state = initialState, action) => {
     case todoConstants.TOGGLE_COMPLETION:
       return state.map((todo) => {
         if (todo.id === action.payload.id) {
-          return { ...action.payload };
+          return action.payload;
         }
 
-        return { ...todo };
+        return todo;
       });
     case todoConstants.DELETE_TODO:
       return state.filter(todo => todo.id !== action.payload.todoId);

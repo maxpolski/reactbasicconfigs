@@ -4,5 +4,9 @@
     "plugins": [
         "react",
         "eslint-plugin-babel",
-    ]
+        "jest"
+    ],
+    "env": {
+        "jest/globals": true
+    }
 }
