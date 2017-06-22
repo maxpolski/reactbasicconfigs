@@ -24,7 +24,10 @@ export default class Todo extends Component {
     this.setState({ isEditing: true });
 
   confirmEditing = (newCaption) => {
-    this.props.editTodo(this.props.id, newCaption);
+    this.props.editTodo({
+      todoId: this.props.id,
+      newCaption,
+    });
     this.setState({ isEditing: false });
   }
 
